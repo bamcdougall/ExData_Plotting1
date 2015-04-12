@@ -86,21 +86,40 @@ print(subTblDF)
 ##  (3) Top Left Margin Text = "Plot1"
 ##  (4) Save plot to a PNG file with width = 480 px and height = 480 px
 windows(width=6.6667,height=6.6667)   # in windows, sets screen display to 480pX480p
+par(
+    mfrow = c(1, 1),        # explicitly set plot device to draw 1 graph
+    mar = c(4, 4, 2, 1),    # explicitly set margins around plot to default class values
+    oma = c(1, 1, 1, 1)     # explicitly set outer margin such that a line of text could be added
+)
+
 plot(
     subTblDF[["UTCdate"]], subTblDF[["Global_active_power"]], type = "l", lty=1, col = "black",
     main = "Global Active Power", ylab="Global Active Power (kilowatts)", xlab = ""
+)
+# ##
+# ## generate PNG file using device copy command and turn PNG graphic device off
+# ##
+# dev.copy(
+#     png,
+#     filename = "plot2.png",
+#     width = 480, height = 480
+# )
+# dev.off()
+##
+## generate PNG file using device copy command and turn PNG graphic device off
+##
+png(
+    filename = "plot2.png",
+    width = 480, height = 480
 )
 par(
     mfrow = c(1, 1),        # explicitly set plot device to draw 1 graph
     mar = c(4, 4, 2, 1),    # explicitly set margins around plot to default class values
     oma = c(1, 1, 1, 1)     # explicitly set outer margin such that a line of text could be added
 )
-##
-## generate PNG file using device copy command and turn PNG graphic device off
-##
-dev.copy(
-    png,
-    filename = "plot2.png",
-    width = 480, height = 480
+
+plot(
+    subTblDF[["UTCdate"]], subTblDF[["Global_active_power"]], type = "l", lty=1, col = "black",
+    main = "Global Active Power", ylab="Global Active Power (kilowatts)", xlab = ""
 )
 dev.off()

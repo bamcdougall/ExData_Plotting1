@@ -86,22 +86,41 @@ print(subTblDF)
 ##  (4) Turn off dev device for the PNG graphic device
 ##
 windows(width=6.6667,height=6.6667)   # in windows, sets screen display to 480pX480p
-hist(
-    subTblDF[["Global_active_power"]], breaks = 12, col = "red",
-    main = "Global Active Power", xlab="Global Active Power (kilowatts)"
-)
-
 par(
     mfrow = c(1, 1),        # explicitly set plot device to draw 1 graph
     mar = c(4, 4, 2, 1),    # explicitly set margins around plot to default class values
     oma = c(1, 1, 1, 1)     # explicitly set outer margin such that a line of text could be added
 )
+
+hist(
+    subTblDF[["Global_active_power"]], breaks = 12, col = "red",
+    main = "Global Active Power", xlab="Global Active Power (kilowatts)"
+)
+# ##
+# ## generate PNG file using device copy command and turn PNG graphic device off
+# ##
+# dev.copy(
+#     png,
+#     filename = "plot1.png",
+#     width = 480, height = 480
+# )
+# dev.off()
 ##
 ## generate PNG file using device copy command and turn PNG graphic device off
 ##
-dev.copy(
-    png,
+png(
     filename = "plot1.png",
     width = 480, height = 480
 )
+par(
+    mfrow = c(1, 1),        # explicitly set plot device to draw 1 graph
+    mar = c(4, 4, 2, 1),    # explicitly set margins around plot to default class values
+    oma = c(1, 1, 1, 1)     # explicitly set outer margin such that a line of text could be added
+)
+
+hist(
+    subTblDF[["Global_active_power"]], breaks = 12, col = "red",
+    main = "Global Active Power", xlab="Global Active Power (kilowatts)"
+)
+
 dev.off()

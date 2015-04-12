@@ -85,6 +85,12 @@ print(subTblDF)
 ##  (3) xlabel = None
 ##  (4) Save plot to a PNG file with width = 480 px and height = 480 px
 windows(width=6.6667,height=6.6667)
+par(
+    mfrow = c(1, 1),        # explicitly set plot device to draw 1 graph
+    mar = c(4, 4, 2, 1),    # explicitly set margins around plot to default class values
+    oma = c(1, 1, 1, 1)     # explicitly set outer margin such that a line of text could be added
+)
+
 with( subTblDF, plot(subTblDF[["UTCdate"]], subTblDF[["Sub_metering_1"]], col = "black",
                      type = "n",
                      ylab="Energy sub metering", xlab = "",
@@ -98,18 +104,40 @@ legend(
     legend = c("Sub_metering_1       ", "Sub_metering_2       ", "Sub_metering_3       "),
     cex = c(1)
     )
+# ##
+# ## generate PNG file using device copy command and turn PNG graphic device off
+# ##
+# dev.copy(
+#     png,
+#     filename = "plot3.png",
+#     width = 480, height = 480
+# )
+# dev.off()
+##
+## generate PNG file using device copy command and turn PNG graphic device off
+##
+png(
+    filename = "plot3.png",
+    width = 480, height = 480
+)
 
 par(
     mfrow = c(1, 1),        # explicitly set plot device to draw 1 graph
     mar = c(4, 4, 2, 1),    # explicitly set margins around plot to default class values
     oma = c(1, 1, 1, 1)     # explicitly set outer margin such that a line of text could be added
 )
-##
-## generate PNG file using device copy command and turn PNG graphic device off
-##
-dev.copy(
-    png,
-    filename = "plot3.png",
-    width = 480, height = 480
+
+with( subTblDF, plot(subTblDF[["UTCdate"]], subTblDF[["Sub_metering_1"]], col = "black",
+                     type = "n",
+                     ylab="Energy sub metering", xlab = "",
+)
+)
+with( subTblDF, lines(subTblDF[["UTCdate"]], subTblDF[["Sub_metering_1"]], col = "black") )
+with( subTblDF, lines(subTblDF[["UTCdate"]], subTblDF[["Sub_metering_2"]], col = "red") )
+with( subTblDF, lines(subTblDF[["UTCdate"]], subTblDF[["Sub_metering_3"]], col = "blue") )
+legend(
+    "topright", lty= c(1,1,1), col = c("black", "red", "blue"),
+    legend = c("Sub_metering_1       ", "Sub_metering_2       ", "Sub_metering_3       "),
+    cex = c(1)
 )
 dev.off()
