@@ -85,6 +85,7 @@ print(subTblDF)
 ##  (3) xlabel = None
 ##  (3) Top Left Margin Text = "Plot1"
 ##  (4) Save plot to a PNG file with width = 480 px and height = 480 px
+windows(width=6.6667,height=6.6667)   # in windows, sets screen display to 480pX480p
 plot(
     subTblDF[["UTCdate"]], subTblDF[["Global_active_power"]], type = "l", lty=1, col = "black",
     main = "Global Active Power", ylab="Global Active Power (kilowatts)", xlab = ""

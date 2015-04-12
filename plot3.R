@@ -84,10 +84,10 @@ print(subTblDF)
 ##  (2) ylabel = "Energy sub metering"
 ##  (3) xlabel = None
 ##  (4) Save plot to a PNG file with width = 480 px and height = 480 px
+windows(width=6.6667,height=6.6667)
 with( subTblDF, plot(subTblDF[["UTCdate"]], subTblDF[["Sub_metering_1"]], col = "black",
                      type = "n",
                      ylab="Energy sub metering", xlab = "",
-                     #ylim=c(0, 50) # when data are subsetted correctly, expect that ylim set by Sub_metering_1
 )
 )
 with( subTblDF, lines(subTblDF[["UTCdate"]], subTblDF[["Sub_metering_1"]], col = "black") )
@@ -95,7 +95,8 @@ with( subTblDF, lines(subTblDF[["UTCdate"]], subTblDF[["Sub_metering_2"]], col =
 with( subTblDF, lines(subTblDF[["UTCdate"]], subTblDF[["Sub_metering_3"]], col = "blue") )
 legend(
     "topright", lty= c(1,1,1), col = c("black", "red", "blue"),
-    legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3")
+    legend = c("Sub_metering_1       ", "Sub_metering_2       ", "Sub_metering_3       "),
+    cex = c(1)
     )
 
 par(

@@ -85,6 +85,7 @@ print(subTblDF)
 ##  (3) Save histogram to a PNG file with width = 480 px and height = 480 px
 ##  (4) Turn off dev device for the PNG graphic device
 ##
+windows(width=6.6667,height=6.6667)   # in windows, sets screen display to 480pX480p
 hist(
     subTblDF[["Global_active_power"]], breaks = 12, col = "red",
     main = "Global Active Power", xlab="Global Active Power (kilowatts)"
