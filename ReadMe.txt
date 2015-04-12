@@ -28,6 +28,8 @@
 ##
 ##      4/11/15:    Update git archive; started this ReadMe file
 ##                  Extracted raw file from zip archive to replace initial data file
+##                  Discovered error in restructing date inside mutate command.
+##                  Initially used mdy_hms(), but should have been dmy_hms()
 ##
 ##
 ##

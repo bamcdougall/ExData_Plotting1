@@ -54,14 +54,14 @@ fileList <- dir()
 ##
 subTblDF <- tbl_df(
     read.csv2("household_power_consumption.txt", sep = ";", stringsAsFactors = FALSE, na.strings = "?",
-    )
+              )
 )  %>%
     mutate(
         UTCdate = dmy_hms( paste(Date, Time) )
-    ) %>%
+        ) %>%
     filter(
         UTCdate >= ymd("2007-02-01") & UTCdate < ymd("2007-02-03")
-    )%>%
+        )%>%
     select(
         UTCdate, Global_active_power, Global_reactive_power, Voltage, Sub_metering_1, Sub_metering_2, Sub_metering_3
     )  %>%
@@ -79,28 +79,3 @@ print(subTblDF)
 ##
 ## (3) Plot Data
 ##
-##  Generate a histogram with 12 bins for Global Active Power
-##  (1) Title = "Global Active Power"
-##  (2) Label = "Global Active Power (kilowatts)"
-##  (3) Save histogram to a PNG file with width = 480 px and height = 480 px
-##  (4) Turn off dev device for the PNG graphic device
-##
-hist(
-    subTblDF[["Global_active_power"]], breaks = 12, col = "red",
-    main = "Global Active Power", xlab="Global Active Power (kilowatts)"
-)
-
-par(
-    mfrow = c(1, 1),        # explicitly set plot device to draw 1 graph
-    mar = c(4, 4, 2, 1),    # explicitly set margins around plot to default class values
-    oma = c(1, 1, 1, 1)     # explicitly set outer margin such that a line of text could be added
-)
-##
-## generate PNG file using device copy command and turn PNG graphic device off
-##
-dev.copy(
-    png,
-    filename = "plot1.png",
-    width = 480, height = 480
-)
-dev.off()
